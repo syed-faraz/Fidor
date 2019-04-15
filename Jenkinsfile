@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  tools {
+    maven 'apache-maven-3.6.1'
+  }
   parameters {
     string(name: 'PipelineJob',
        defaultValue: 'maven',
