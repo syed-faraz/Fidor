@@ -20,9 +20,9 @@ pipeline {
       }
     }
     
-    stage('build') {
+    stage('deploy') {
       steps {
-        sh 'mvn make'
+        sh 'mvn deploy'
       }
     }
   }  
