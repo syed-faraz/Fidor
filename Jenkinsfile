@@ -16,7 +16,7 @@ pipeline {
     }  
     stage('output') {
       steps {
-        sh "echo Hello ${params.description}, your ${params.defaultValue} ${params.name} is successful"
+        sh "echo Hello '${params.description}', your '${params.defaultValue}' '${params.name}' is successful"
       }
     }  
   }      
