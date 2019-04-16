@@ -14,17 +14,13 @@ pipeline {
     stage('compile') {
       steps {
         sh 'mvn clean install'
-        post {
-          success {
-            sh "echo your '${params.PipelineJob}' job is successful"
-          }  
-        }
       }
-    }  
-    stage('deploy') {
-      steps {
-        sh 'mvn deploy'
-      }
+    }
+  }  
+        
+  post {
+    success {
+      sh "echo your '${params.PipelineJob}' job is successful"
     }  
   }
  
