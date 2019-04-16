@@ -10,7 +10,7 @@ pipeline {
        description: 'Fidor Solutions')
   } 
   
-  properties([pipelineTriggers([pollSCM('H * * * *')])])
+  options([pipelineTriggers([pollSCM('H * * * *')])])
   
   stages {
     stage('compile') {
@@ -22,14 +22,14 @@ pipeline {
   post {
     success {
       sh "echo your '${params.PipelineJob}' job is successful"
-      stages {
-        stage('deploy') {
-          steps {
-            sh 'mvn deploy'
-          }
-        }
-      }  
     }
+    stages {
+      stage('deploy') {
+        steps {
+          sh 'mvn deploy'
+        }
+      }
+    }  
   }
  
 }
