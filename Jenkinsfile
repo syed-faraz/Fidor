@@ -3,21 +3,33 @@ pipeline {
   tools {
     maven 'M3'
   }
+  
   parameters {
     string(name: 'PipelineJob',
        defaultValue: 'maven',
        description: 'Fidor Solutions')
   } 
+  
+  properties([pipelineTriggers([pollSCM('H * * * *')])])
+  
   stages {
     stage('compile') {
       steps {
         sh 'mvn clean install'
       }
-    }  
-    stage('output') {
-      steps {
-        sh "echo your '${params.PipelineJob}' is successful"
-      }
-    }  
-  }      
+    }
+  }  
+  post {
+    success {
+      sh "echo your '${params.PipelineJob}' job is successful"
+      stages {
+        stage('deploy') {
+          steps {
+            sh 'mvn deploy'
+          }
+        }
+      }  
+    }
+  }
+ 
 }
