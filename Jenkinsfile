@@ -22,7 +22,7 @@ pipeline {
     
     stage('build') {
       steps {
-        sh 'mvn build'
+        sh 'mvn make'
       }
     }
   }  
