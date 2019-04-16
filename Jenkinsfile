@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  triggers { 
+    pollSCM('H/5 * * * *) 
+  }
   tools {
     maven 'M3'
   }
@@ -16,6 +19,12 @@ pipeline {
         sh 'mvn clean install'
       }
     }
+    
+    stage('build') {
+      steps {
+        sh 'mvn build'
+      }
+    }
   }  
         
   post {
@@ -23,13 +32,5 @@ pipeline {
       sh "echo your '${params.PipelineJob}' job is successful"
     }  
   }
-  
-  stages {
-    stage('build') {
-      steps {
-        sh 'mvn build'
-      }
-    }
-  }  
  
 }
