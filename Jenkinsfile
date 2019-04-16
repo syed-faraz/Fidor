@@ -23,5 +23,13 @@ pipeline {
       sh "echo your '${params.PipelineJob}' job is successful"
     }  
   }
+  
+  stages {
+    stage('build') {
+      steps {
+        sh 'mvn build'
+      }
+    }
+  }  
  
 }
