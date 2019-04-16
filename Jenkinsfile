@@ -10,8 +10,6 @@ pipeline {
        description: 'Fidor Solutions')
   } 
   
-  #options([pipelineTriggers([pollSCM('H * * * *')])])
-  
   stages {
     stage('compile') {
       steps {
